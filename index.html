@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bienvenidos a mi app</h1>
+    <form action="">
+    <input class="text" id="subject" placeholder="Subject"><br>
+    <input class="text" id="email" placeholder="Email"><br>
+    <textarea name="text" id="text" cols="30" rows="10"></textarea><br>
+    <input type ="submit" value="submit"></input><br>
+    </form>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script>
+$('form').on('submit', (e) => {
+    e.preventDefault();
+
+    const email = $('#email').val().trim();
+    const subject = $('#subject').val().trim();
+    const text = $('#text').val().trim();
+
+    const data ={
+        email,
+        subject,
+        text
+    };
+    $.post('/email',data, function(){
+        console.log('El Servidor recibe nuestra info');
+    });
+}); 
+</script>
+</html>
